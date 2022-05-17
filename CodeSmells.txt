@@ -2,3 +2,4 @@
 • Primitive obsession en Cuenta y Movimiento
 • No es responsabilidad de Movimiento calcular el saldo luego de una operacion ya que esta informacion del saldo la tiene Cuenta
 • Cuenta delega comportamiento a movimiento que no le corresponde por ejemplo el agregado de dichos movimientos
+• Repeticion de logica en Cuenta en los metodos poner y sacar
