@@ -39,27 +39,38 @@ public class Cuenta {
     }
   }
 
-  private void sumarSaldo(Double valor) {
-    this.saldo += valor;
+  private void sumarSaldo(Double monto) {
+    this.saldo += monto;
   }
 
   public void sacar(Double cuanto) {
     this.validarOperacionNegativa(cuanto);
-    if (getSaldo() - cuanto < 0) {
-      throw new SaldoMenorException("No puede sacar mas de " + getSaldo() + " $");
-    }
-    Double montoExtraidoHoy = getMontoExtraidoA(LocalDate.now());
-    Double limite = 1000 - montoExtraidoHoy;
-    if (cuanto > limite) {
-      throw new MaximoExtraccionDiarioException("No puede extraer mas de $ " + 1000
-          + " diarios, límite: " + limite);
-    }
+    this.validarExtraccion(cuanto);
     this.agregarMovimiento(LocalDate.now(), cuanto, false);
     this.restarSaldo(cuanto);
   }
 
-  private void restarSaldo(Double valor) {
-    this.saldo -= valor;
+  private void validarExtraccion(Double montoOperacion) {
+    this.validarSaldoSuficiente(montoOperacion);
+    this.validarLimiteDeExtraccionSuficiente(montoOperacion);
+  }
+
+  private void validarSaldoSuficiente(Double montoOperacion) {
+    if (montoOperacion > this.getSaldo()) {
+      throw  new SaldoMenorException("No puede sacar mas de " + this.getSaldo() + " $");
+    }
+  }
+
+  private void validarLimiteDeExtraccionSuficiente(Double montoOperacion) {
+    Double limite = 1000 - getMontoExtraidoA(LocalDate.now());
+    if (montoOperacion > limite) {
+      throw new MaximoExtraccionDiarioException("No puede extraer mas de $ " + 1000
+          + " diarios, límite: " + limite);
+    }
+  }
+
+  private void restarSaldo(Double monto) {
+    this.saldo -= monto;
   }
 
   public void agregarMovimiento(LocalDate fecha, Double cuanto, Boolean esDeposito) {
@@ -74,9 +85,9 @@ public class Cuenta {
         .sum();
   }
 
-  private void validarOperacionNegativa(Double valor) {
-    if (valor <= 0) {
-      throw new MontoNegativoException(valor + ": el monto de la operacion debe ser un valor positivo");
+  private void validarOperacionNegativa(Double monto) {
+    if (monto <= 0) {
+      throw new MontoNegativoException(monto + ": el monto de la operacion debe ser un valor positivo");
     }
   }
 

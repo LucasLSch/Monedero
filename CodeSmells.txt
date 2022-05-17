@@ -12,3 +12,4 @@
     ► Se delega la logica de validacion de operacion con valor negativo al metodo validarOperacionNegativa
 • El metodo poner y el metodo sacar de Cuenta son Long Methods
     ► Se delega la logica de las validaciones a otros metodos fuera de poner
+    ► Se delega la logica de las validaciones a otros metodos fuera de sacar
