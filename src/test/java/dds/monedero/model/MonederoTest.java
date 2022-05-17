@@ -72,4 +72,12 @@ public class MonederoTest {
     assertThrows(MontoNegativoException.class, () -> cuenta.sacar(-500));
   }
 
+  @Test
+  public void MontoExtraidoHoy() {
+    cuenta.setSaldo(2000);
+    cuenta.sacar(500);
+    cuenta.sacar(150);
+    assertEquals(cuenta.getMontoExtraidoA(LocalDate.now()), 650);
+  }
+
 }
