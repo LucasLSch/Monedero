@@ -3,8 +3,10 @@
     ► Sol: Cambio todos los tipo de datos primitivos a su version de objetos.
 • No es responsabilidad de Movimiento calcular el saldo luego de una operacion ya que esta informacion del saldo la tiene Cuenta
     ► La logica de sumar o restar del saldo ahora esta en Cuenta
-    ► El metodo de calcularValor ya no es necesario en consecuencia
+    ► En consecuencia el metodo de calcularValor ya no es necesario
     ► El metodo de agregateA en Movimiento ya no llama a setSaldo ni a calcularValor
 • Cuenta delega comportamiento a movimiento que no le corresponde por ejemplo el agregado de dichos movimientos
+    ► La logica de agregar movimiento ahora esta exclusivamente en Cuenta
+    ► En consecuencia el metodo agregateA en Movimiento ya no es necesario
 • Repeticion de logica en Cuenta en los metodos poner y sacar
-• El metodo sacar de Cuenta es un Long Method
+• El metodo poner y el metodo sacar de Cuenta es un Long Method

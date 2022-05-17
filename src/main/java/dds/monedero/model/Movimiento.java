@@ -43,8 +43,4 @@ public class Movimiento {
   public Boolean isExtraccion() {
     return !esDeposito;
   }
-
-  public void agregateA(Cuenta cuenta) {
-    cuenta.agregarMovimiento(fecha, monto, esDeposito);
-  }
 }
