@@ -27,10 +27,7 @@ public class Cuenta {
   }
 
   public void poner(Double cuanto) {
-    if (cuanto <= 0) {
-      throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
-    }
-
+   this.validarOperacionNegativa(cuanto);
     if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) {
       throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
     }
@@ -44,9 +41,7 @@ public class Cuenta {
   }
 
   public void sacar(Double cuanto) {
-    if (cuanto <= 0) {
-      throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
-    }
+    this.validarOperacionNegativa(cuanto);
     if (getSaldo() - cuanto < 0) {
       throw new SaldoMenorException("No puede sacar mas de " + getSaldo() + " $");
     }
@@ -74,6 +69,12 @@ public class Cuenta {
         .filter(movimiento -> !movimiento.isDeposito() && movimiento.getFecha().equals(fecha))
         .mapToDouble(Movimiento::getMonto)
         .sum();
+  }
+
+  private void validarOperacionNegativa(Double valor) {
+    if (valor <= 0) {
+      throw new MontoNegativoException(valor + ": el monto a ingresar debe ser un valor positivo");
+    }
   }
 
   public List<Movimiento> getMovimientos() {
