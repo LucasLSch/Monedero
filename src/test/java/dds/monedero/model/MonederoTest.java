@@ -7,8 +7,9 @@ import dds.monedero.exceptions.SaldoMenorException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MonederoTest {
   private Cuenta cuenta;
@@ -34,6 +35,10 @@ public class MonederoTest {
     cuenta.poner(1500);
     cuenta.poner(456);
     cuenta.poner(1900);
+    assertTrue(cuenta.getMovimientos()
+                        .stream()
+                        .filter(movimiento -> movimiento.fueDepositado(LocalDate.now()))
+                        .count() == 3);
   }
 
   @Test
