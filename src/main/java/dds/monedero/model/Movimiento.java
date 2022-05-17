@@ -7,16 +7,16 @@ public class Movimiento {
   // Nota: En ningún lenguaje de programación usen jamás doubles (es decir, números con punto flotante) para modelar dinero en el mundo real.
   // En su lugar siempre usen numeros de precision arbitraria o punto fijo, como BigDecimal en Java y similares
   // De todas formas, NO es necesario modificar ésto como parte de este ejercicio. 
-  private double monto;
-  private boolean esDeposito;
+  private Double monto;
+  private Boolean esDeposito;
 
-  public Movimiento(LocalDate fecha, double monto, boolean esDeposito) {
+  public Movimiento(LocalDate fecha, Double monto, Boolean esDeposito) {
     this.fecha = fecha;
     this.monto = monto;
     this.esDeposito = esDeposito;
   }
 
-  public double getMonto() {
+  public Double getMonto() {
     return monto;
   }
 
@@ -24,23 +24,23 @@ public class Movimiento {
     return fecha;
   }
 
-  public boolean fueDepositado(LocalDate fecha) {
+  public Boolean fueDepositado(LocalDate fecha) {
     return isDeposito() && esDeLaFecha(fecha);
   }
 
-  public boolean fueExtraido(LocalDate fecha) {
+  public Boolean fueExtraido(LocalDate fecha) {
     return isExtraccion() && esDeLaFecha(fecha);
   }
 
-  public boolean esDeLaFecha(LocalDate fecha) {
+  public Boolean esDeLaFecha(LocalDate fecha) {
     return this.fecha.equals(fecha);
   }
 
-  public boolean isDeposito() {
+  public Boolean isDeposito() {
     return esDeposito;
   }
 
-  public boolean isExtraccion() {
+  public Boolean isExtraccion() {
     return !esDeposito;
   }
 
