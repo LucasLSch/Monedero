@@ -10,4 +10,5 @@
     ► En consecuencia el metodo agregateA en Movimiento ya no es necesario
 • Repeticion de logica en Cuenta en los metodos poner y sacar
     ► Se delega la logica de validacion de operacion con valor negativo al metodo validarOperacionNegativa
-• El metodo poner y el metodo sacar de Cuenta es un Long Method
+• El metodo poner y el metodo sacar de Cuenta son Long Methods
+    ► Se delega la logica de las validaciones a otros metodos fuera de poner
