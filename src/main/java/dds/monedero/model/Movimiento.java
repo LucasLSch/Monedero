@@ -1,6 +1,7 @@
 package dds.monedero.model;
 
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 public class Movimiento {
   private LocalDate fecha;
@@ -8,39 +9,19 @@ public class Movimiento {
   // En su lugar siempre usen numeros de precision arbitraria o punto fijo, como BigDecimal en Java y similares
   // De todas formas, NO es necesario modificar ésto como parte de este ejercicio. 
   private Double monto;
-  private Boolean esDeposito;
 
-  public Movimiento(LocalDate fecha, Double monto, Boolean esDeposito) {
+  public Movimiento(LocalDate fecha, Double monto) {
     this.fecha = fecha;
     this.monto = monto;
-    this.esDeposito = esDeposito;
   }
 
-  public Double getMonto() {
-    return monto;
-  }
-
-  public LocalDate getFecha() {
-    return fecha;
-  }
-
-  public Boolean fueDepositado(LocalDate fecha) {
-    return isDeposito() && esDeLaFecha(fecha);
-  }
-
-  public Boolean fueExtraido(LocalDate fecha) {
-    return isExtraccion() && esDeLaFecha(fecha);
-  }
+  public Double getMonto() {return  this.monto;}
 
   public Boolean esDeLaFecha(LocalDate fecha) {
-    return this.fecha.equals(fecha);
+    return this.getFecha().isEqual(fecha);
   }
 
-  public Boolean isDeposito() {
-    return esDeposito;
-  }
-
-  public Boolean isExtraccion() {
-    return !esDeposito;
+  private LocalDate getFecha() {
+    return this.fecha;
   }
 }

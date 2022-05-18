@@ -35,10 +35,7 @@ public class MonederoTest {
     cuenta.poner(1500.0);
     cuenta.poner(456.0);
     cuenta.poner(1900.0);
-    assertTrue(cuenta.getMovimientos()
-                        .stream()
-                        .filter(movimiento -> movimiento.fueDepositado(LocalDate.now()))
-                        .count() == 3);
+    assertEquals(cuenta.getCantidadDepositosDe(LocalDate.now()), 3);
   }
 
   @Test

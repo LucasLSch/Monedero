@@ -1,6 +1,11 @@
-• Divergent Change en la clase Movimiento, los objetivos de un movimiento de extraccion y uno de deposito son independientes
+• Type Test en la clase Movimiento, se pregunta el tipo de la clase mediante el uso del booleano esDeposito
+    ► Cuenta ahora implementa dos listas en lugar de una. depositos y extracciones
+    ► Movimiento ahora es una clase abstracta que implementa los atributos monto y fecha, y los metodos getMonto y esDeLafecha
+    ► Se crean las clases Deposito y Extraccion que heredan de Movimiento
+    ► agregarMovimiento se divide en agregarDeposito y agregarExtraccion
+    ► getMovimientos se divide en getDepositos y getExtracciones
 • Primitive obsession en Cuenta y Movimiento
-    ► Sol: Cambio todos los tipo de datos primitivos a su version de objetos.
+    ► Cambio todos los tipo de datos primitivos a su version de objetos.
 • No es responsabilidad de Movimiento calcular el saldo luego de una operacion ya que esta informacion del saldo la tiene Cuenta
     ► La logica de sumar o restar del saldo ahora esta en Cuenta
     ► En consecuencia el metodo de calcularValor ya no es necesario
@@ -13,3 +18,10 @@
 • El metodo poner y el metodo sacar de Cuenta son Long Methods
     ► Se delega la logica de las validaciones a otros metodos fuera de poner
     ► Se delega la logica de las validaciones a otros metodos fuera de sacar
+• El metodo set movimientos no se utiliza
+    ► Se elimina como consecuencia de la division de la lista de movimientos
+
+NOTA: Alternativa de solucion al CS de Type Test es usar composicion y un patron state. Esto logra que Cuenta no cambie
+tanto su interfaz pero no resuelve totalmente el Type Test ya que indirectamente se sigue preguntando sobre su tipo.
+La solucion actual tiene el problema de que se definen clases sin comportamiento.
+La eleccion de cual de las dos utilizar dependera de como sea la evolucion del sistema.
